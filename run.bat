@@ -1,3 +1,3 @@
-g++ -o final.exe main.cpp
-final
+g++ classes.cpp main.cpp classes.h
+a
 pause
