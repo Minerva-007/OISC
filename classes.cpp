@@ -2,6 +2,7 @@
 #include"iostream"
 #include"vector"
 #define null 0
+#define DEBUG
 
 instruction::instruction()
 {
@@ -29,13 +30,27 @@ unsigned int instruction::run()
 {
 	if(a==null || b==null)
 	{
-		std::cout<<"HALT\n";
+		std::cout<<"----------------------\nHALT\n-------------------\n";
 		exit(0);
 	}
+	#ifdef DEBUG
+	std::cout<<"Value of op1 prior to instruction:"<<*a<<std::endl<<"Value of op2 prior to instruction:"<<*b<<std::endl;
+	#endif
 	//perform subtraction
 	*b = *b - *a;
-	if(*b<0)return jmp;
+	#ifdef DEBUG
+	std::cout<<"Value of op2 after instruction:"<<*b<<std::endl;
+	if(*b<=0)std::cout<<"LEQ zero, jumping to:"<<jmp<<std::endl;
+	else std::cout<<"not LEQ zero, continuing."<<std::endl;
+	#endif
+	if(*b<=0)return jmp;
 	else return null;
+}
+
+void instruction::displayInstruction()
+{
+	if(a==null || b==null)std::cout<<" HALT"<<std::endl;
+	else std::cout<<" subtract "<<*a<<" from "<<*b<<" and branch to instruction "<<jmp<<" if less than 0"<<std::endl;
 }
 
 void instructionList::addInstruction(instruction in)
@@ -47,8 +62,20 @@ int instructionList::execute()
 {
 	for(int i=0;i<List.size();i++)
 	{
+		#ifdef DEBUG
+		std::cout<<"Execuring instruction number:"<<i<<std::endl;
+		#endif
 		unsigned int next=List[i].run();
 		if(next!=null)i=next-1;
 	}
 	return 0;
+}
+
+void instructionList::displayInstructions()
+{
+	for(int i=0;i<List.size();i++)
+	{
+		std::cout<<"Instruction "<<i;
+		List[i].displayInstruction();
+	}
 }
