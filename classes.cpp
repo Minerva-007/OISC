@@ -47,6 +47,12 @@ unsigned int instruction::run()
 	else return null;
 }
 
+void instruction::displayInstruction()
+{
+	if(a==null || b==null)std::cout<<"HALT"<<std::endl;
+	else std::cout<<" subtract "<<*a<<" from "<<*b<<" and branch to instruction "<<jmp<<" if less than 0"<<std::endl;
+}
+
 void instructionList::addInstruction(instruction in)
 {
 	List.push_back(in);
@@ -63,4 +69,13 @@ int instructionList::execute()
 		if(next!=null)i=next-1;
 	}
 	return 0;
+}
+
+void instructionList::displayInstructions()
+{
+	for(int i=0;i<List.size();i++)
+	{
+		std::cout<<"Instruction "<<i;
+		List[i].displayInstruction();
+	}
 }
