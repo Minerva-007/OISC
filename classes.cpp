@@ -30,7 +30,7 @@ unsigned int instruction::run()
 {
 	if(a==null || b==null)
 	{
-		std::cout<<"HALT\n";
+		std::cout<<"----------------------\nHALT\n-------------------\n";
 		exit(0);
 	}
 	#ifdef DEBUG
@@ -49,7 +49,7 @@ unsigned int instruction::run()
 
 void instruction::displayInstruction()
 {
-	if(a==null || b==null)std::cout<<"HALT"<<std::endl;
+	if(a==null || b==null)std::cout<<" HALT"<<std::endl;
 	else std::cout<<" subtract "<<*a<<" from "<<*b<<" and branch to instruction "<<jmp<<" if less than 0"<<std::endl;
 }
 
