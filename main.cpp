@@ -14,7 +14,7 @@ int main()
 	int a=1,b=5;
 	int k=2;int Z=0;
 	instruction i1(&a, &b);//b=b-a
-	instruction i2(&b, &Z, 3);//Z=0-b (-b), jmp if
+	instruction i2(&Z, &b, 3);//Z=0-b (-b), jmp if
 	instruction i3(&Z, &k, 1);//k=k-z = k+b
 	instruction i4;
 	instructionList I;

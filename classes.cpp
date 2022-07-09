@@ -30,7 +30,7 @@ unsigned int instruction::run()
 {
 	if(a==null || b==null)
 	{
-		std::cout<<"----------------------\nHALT\n-------------------\n";
+		std::cout<<"----------------------\nHALT\n----------------------\n";
 		exit(0);
 	}
 	#ifdef DEBUG
@@ -50,7 +50,7 @@ unsigned int instruction::run()
 void instruction::displayInstruction()
 {
 	if(a==null || b==null)std::cout<<" HALT"<<std::endl;
-	else std::cout<<" subtract "<<*a<<" from "<<*b<<" and branch to instruction "<<jmp<<" if less than 0"<<std::endl;
+	else std::cout<<" subtract "<<a<<" ("<<*a<<") from "<<b<<" ("<<*b<<") and branch to instruction "<<jmp<<" if less than 0"<<std::endl;
 }
 
 void instructionList::addInstruction(instruction in)
@@ -63,7 +63,7 @@ int instructionList::execute()
 	for(int i=0;i<List.size();i++)
 	{
 		#ifdef DEBUG
-		std::cout<<"Execuring instruction number:"<<i<<std::endl;
+		std::cout<<"Executing instruction number:"<<i<<std::endl;
 		#endif
 		unsigned int next=List[i].run();
 		if(next!=null)i=next-1;
@@ -75,7 +75,7 @@ void instructionList::displayInstructions()
 {
 	for(int i=0;i<List.size();i++)
 	{
-		std::cout<<"Instruction "<<i;
+		std::cout<<"Instruction "<<i<<":";
 		List[i].displayInstruction();
 	}
 }
