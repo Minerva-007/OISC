@@ -11,19 +11,34 @@ TODO: add description
 int main()
 {
 	//Hardcoding for now
-	int a=1,b=5;
-	int k=2;int Z=0;
-	instruction i1(&a, &b);//b=b-a
-	instruction i2(&Z, &b, 3);//Z=0-b (-b), jmp if
-	instruction i3(&Z, &k, 1);//k=k-z = k+b
-	instruction i4;
-	instructionList I;
+	//Program description: multiply a and b, and store value in accumulator
+	int a=69,b=420;//Multipliers
+	int Z=0;//Zero constant
+	int O=1;//One constant
+	int acc=0;//Accumulator
+	int dum=0;//Dummy for unconditional jump
+	instructionList I;//Instruction List duh
+	
+	instruction i1(&a, &Z);//load -a to Z
+	instruction i2(&Z, &acc);//load a to acc
 	I.addInstruction(i1);
 	I.addInstruction(i2);
+	
+	instruction i3(&O, &b, 5);//decrement b, and jump to iend if equal to 0
+	instruction i4(&Z, &acc);//does acc- (-Z) or basically acc+a
+	instruction i5(&dum, &dum, 2);//Jump to 3
+	
 	I.addInstruction(i3);
 	I.addInstruction(i4);
-	I.displayInstructions();
-	I.execute();
-	std::cout<<a<<std::endl<<b<<std::endl;
+	I.addInstruction(i5);
+	
+	instruction iend;//HALT
+	I.addInstruction(iend);
+	
+	I.displayInstructions();//Display them nicely
+	system("pause");//system call to pause console
+	I.execute();//Run
+	std::cout<<acc<<std::endl<<Z<<std::endl;
+	
 	return 0;
 }

@@ -1,6 +1,7 @@
 #include"classes.h"
 #include"iostream"
 #include"vector"
+#include"windows.h"
 #define null 0
 #define DEBUG
 
@@ -31,7 +32,7 @@ unsigned int instruction::run()
 	if(a==null || b==null)
 	{
 		std::cout<<"----------------------\nHALT\n----------------------\n";
-		exit(0);
+		return -1;
 	}
 	#ifdef DEBUG
 	std::cout<<"Value of op1 prior to instruction:"<<*a<<std::endl<<"Value of op2 prior to instruction:"<<*b<<std::endl;
@@ -67,6 +68,10 @@ int instructionList::execute()
 		#endif
 		unsigned int next=List[i].run();
 		if(next!=null)i=next-1;
+		if(next==-1)break;
+		#ifdef DEBUG
+		Sleep(7);
+		#endif
 	}
 	return 0;
 }
