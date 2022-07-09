@@ -34,7 +34,8 @@ unsigned int instruction::run()
 	}
 	//perform subtraction
 	*b = *b - *a;
-	return jmp;
+	if(*b<0)return jmp;
+	else return null;
 }
 
 void instructionList::addInstruction(instruction in)
