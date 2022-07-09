@@ -1,2 +1,2 @@
-# SISC
- A single-instruction-set-computer design.
+# OISC
+ A one-instruction-set-computer design.
